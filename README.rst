@@ -5,7 +5,7 @@
 Для развертывания приложения необходимо выполнить несколько простых действий.
 В первую очередь собрать зависимости с помощью `pipenv`:
 
-.. code::
+.. code:: shell
 
    pipenv install
 
@@ -23,8 +23,8 @@
 
 .. code::
 
-   pipenv run flask generateroles
-   pipenv run flask createsuperuser admin
+   pipenv run flask stoplist generateroles
+   pipenv run flask stoplist createsuperuser admin
 
 
 После этого можно запустить приложения и авторизоваться под пользователем admin,
