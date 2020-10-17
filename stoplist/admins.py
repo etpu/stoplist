@@ -118,28 +118,3 @@ admin.add_view(RoleView(Role, db.session, name='Роли'))
 admin.add_view(PostView(Post, db.session, name='Посты'))
 admin.add_view(StoplistView(Stoplist, db.session, name='Стоплист'))
 admin.add_view(LogView(Log, db.session, name='Лог'))
-
-
-# @app.cli.command('createsuperuser')
-# @click.argument('login')
-# @click.password_option()
-# def create_superuser(login: str, password: str):
-#     admin_role = user_datastore.find_or_create_role('admin')
-#     user = user_datastore.create_user(
-#         login=login, password=hash_password(password), active=True, roles=[admin_role]
-#     )
-#     db.session.add(user)
-#     db.session.commit()
-#     click.echo("Superuser {} successfully created.".format(login))
-#
-#
-# @app.cli.command('generateroles')
-# def generate_roles():
-#     roles = [
-#         user_datastore.find_or_create_role(name=name, description=description)
-#         for name, description in (('admin', 'Администратор'), ('staff', 'Сотрудник'))
-#     ]
-#     for role in roles:
-#         db.session.add(role)
-#     db.session.commit()
-#     click.echo('Roles successfully generated.')
