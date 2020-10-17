@@ -85,15 +85,15 @@ class StoplistView(StaffModelView):
     details_modal = True
     column_searchable_list = ['number', 'code']
     column_filters = ('number', 'code', 'reason1', 'reason2', 'reason3', 'reason4', 'number',)
-    # column_labels = {
-    #     'number': 'Numéro de téléphone',
-    #     'reason1': 'Rendez-vous en Audiotel',
-    #     'reason2': 'Rendez-vous en Privé',
-    #     'reason3': 'Rendez-vous en Direct AOU',
-    #     'reason4': 'Aucun appel',
-    #     'modify': 'Date de la dernière modification',
-    #     'user': 'Employé',
-    # }
+    column_labels = {
+        'number': 'Numéro de téléphone',
+        'reason1': 'Rendez-vous en Audiotel',
+        'reason2': 'Rendez-vous en Privé',
+        'reason3': 'Rendez-vous en Direct AOU',
+        'reason4': 'Aucun appel',
+        'modify': 'Date de la dernière modification',
+        'user': 'Employé',
+    }
 
     def on_model_change(self, form, model, is_created):
         model.user = current_user.__str__()
