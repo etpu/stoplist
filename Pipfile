@@ -17,6 +17,7 @@ flask-security-too = "==4.0.0rc1"
 flask-admin = {git = "https://github.com/flask-admin/flask-admin"}
 flask_babelex = "*"
 pymysql = "*"
+requests = "*"
 
 [requires]
 python_version = "3.8"

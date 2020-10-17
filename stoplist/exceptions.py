@@ -1,0 +1,2 @@
+class InvalidConfigurationType(Exception):
+    pass
