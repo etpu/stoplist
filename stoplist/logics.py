@@ -1,27 +1,32 @@
-from .models import db, Stoplist, Log
 import requests
+from os import environ
+
+from .models import db, Log
 
 
-def send_to_log_and_asterisk(current_user, type, id: int, data: dict):
+def send_to_log_and_asterisk(user, id: int, type, data: str):
     """Выполняет действия при Создании/Редактировании/Удалении записи в базе данных
 
-    :param current_user:
-    :param id: id записи в которой произвелись изменения
-    :param data: Передаются данные формы
+    :param user: текущий пользователь
+    :param id: запись в которой произвелись изменения
+    :param data: Передаются данные об изменении в виде строки
     """
-    # code, number = data["code"], data["number"]
-    # reason1, reason2, reason3, reason4, = data["reason1"], data["reason2"], data["reason3"], data["reason4"]
-    # text = f"{code=}, {number=}, {reason1=}, {reason2=}, {reason3=}, {reason4=}"
-
-    log = Log(stoplist_id=id, user=current_user.id, type=type, data=str(data))
+    log = Log(stoplist_id=id, user=user, type=type, data=str(data))
     db.session.add(log)
     db.session.commit()
-    send_to_asterisk()
 
 
-def after_delete():
-    pass
+def ami_string(cmd, types="action", data="") -> str:
+    """Формирует строку с адресом для подключения к AMI"""
+    return f"http://{environ.get('AMI_HOST')}/rawman?{types}={cmd}{'&' + data if data or cmd == 'login' else ''}"
 
 
-def send_to_asterisk():
-    pass
+def ami_login():
+    """Авторизация с использованием ami_string для генерации адреса"""
+    return requests.get(
+        ami_string(cmd='login') + f"username={environ.get('AMI_USER')}&secret={environ.get('AMI_PASS')}")
+
+
+def ami_cmd(cmd, data=None):
+    """Выполняет нужную комманду через AMI. Запускает ami_login для получения Куки и используя его для авторизации."""
+    return requests.get(ami_string(cmd, data=data), cookies=ami_login().cookies)
