@@ -1,0 +1,34 @@
+{% extends "security/base.html" %}
+{% from "security/_macros.html" import render_field_with_errors, render_field, render_field_errors %}
+
+{% block content %}
+{% include "security/_messages.html" %}
+<style>
+.wrap {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+h1.h3.mb-3.font-weight-normal.center {
+    text-align: center;
+}
+</style>
+<div class="wrap">
+    <form action="{{ url_for_security('login') }}" method="POST" name="login_user_form">
+    {{ login_user_form.hidden_tag() }}
+      <h1 class="h3 mb-3 font-weight-normal center">Stop List</h1>
+      {% include "security/_messages.html" %}
+      {{ render_field(login_user_form.email, id='inputEmail', class='form-control', placeholder='Username', required=True, style='margin-bottom: -1px; border-bottom-right-radius: 0; border-bottom-left-radius: 0;') }}
+      {{ render_field(login_user_form.password, id='inputPassword', class='form-control', placeholder='Password', required=True) }}
+      {{ render_field_errors(login_user_form.csrf_token) }}
+      {{ render_field_errors(login_user_form.email) }}
+      {{ render_field_errors(login_user_form.password) }}
+        {{ render_field(login_user_form.submit, class='btn btn-lg btn-primary btn-block') }}
+    </form>
+</div>
+
+{% include "security/_menu.html" %}
+{% endblock %}
