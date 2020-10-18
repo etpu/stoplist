@@ -1,8 +1,6 @@
 from os import environ
 import bleach
 
-DB_PASS = environ.get('DB_PASS')
-
 
 class BasicConfig():
     SQLALCHEMY_TRACK_MODIFICATIONS = False
@@ -10,7 +8,7 @@ class BasicConfig():
     API_KEY = environ.get('API_KEY') or "eL*wuZmbeWcf9{$pLKCp9ZCk~O$CZr"
     SECURITY_PASSWORD_SALT = environ.get('SECURITY_PASSWORD_SALT') or "Q|~FvB}NK3z6L~stN69#InK@$C}H2f"
     SECURITY_PASSWORD_HASH = environ.get('SECURITY_PASSWORD_HASH') or "~n90V0zdzT0XfXI7@eWex7?s8jAnyT"
-    BABEL_DEFAULT_LOCALE = 'ru'
+    BABEL_DEFAULT_LOCALE = 'fr'
     FLASK_ADMIN_SWATCH = 'cosmo'
     SECURITY_USER_IDENTITY_ATTRIBUTES = [
         {
@@ -24,7 +22,7 @@ class BasicConfig():
 
 class DevelopmentConfig(BasicConfig):
     DEBUG = True
-    SQLALCHEMY_ECHO = True
+    SQLALCHEMY_ECHO = False
     # SQLALCHEMY_DATABASE_URI = f'sqlite:///{path.join(path.dirname(__file__), "db.sqlite3")}'
     SQLALCHEMY_DATABASE_URI = "mysql+pymysql://{}:{}@{}/{}".format(
         environ.get('DB_USER'), environ.get('DB_PASS'),
