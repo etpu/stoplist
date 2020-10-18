@@ -25,7 +25,7 @@ def create_superuser(login: str, password: str):
 def generate_roles():
     roles = [
         user_datastore.find_or_create_role(name=name, description=description)
-        for name, description in (('admin', 'Администратор'), ('staff', 'Сотрудник'))
+        for name, description in (('admin', 'Administrateur'), ('staff', 'Employé'))
     ]
     for role in roles:
         db.session.add(role)
