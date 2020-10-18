@@ -33,7 +33,7 @@ class Stoplist(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     code = db.Column(db.Integer, nullable=False)
-    number = db.Column(db.BIGINT, nullable=False, unique=True)
+    number = db.Column(db.String(20), nullable=False, unique=True)
     reason1 = db.Column(db.Boolean, nullable=True)
     reason2 = db.Column(db.Boolean, nullable=True)
     reason3 = db.Column(db.Boolean, nullable=True)
@@ -54,12 +54,10 @@ class Log(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     created_on = db.Column(db.DateTime, nullable=True, server_default=db.func.now())
-    stoplist_id = db.Column(db.ForeignKey('stoplists.id'), nullable=False, index=True)
-    user = db.Column(db.Integer, nullable=False)
+    stoplist_id = db.Column(db.Integer, nullable=False, index=True)
+    user = db.Column(db.String(20), nullable=False)
     type = db.Column(db.String(30), nullable=False)
     data = db.Column(db.String(255), nullable=False)
-
-    stoplist = db.relationship('Stoplist')
 
     def __repr__(self):
         return f'<Log {self.id} from {self.user}>'
@@ -79,16 +77,3 @@ class Role(db.Model, RoleMixin):  # type: ignore
 
     def __str__(self):
         return self.description if self.description else self.name
-
-
-class Post(db.Model):  # type: ignore
-    __tabename__ = 'posts'
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.Unicode(1024), unique=True, nullable=False)
-    text = db.Column(db.Text, unique=False, nullable=True)
-
-    def __repr__(self):
-        return '<Post {}>'.format(self.name)
-
-    def __str__(self):
-        return self.name
