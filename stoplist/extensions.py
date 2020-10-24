@@ -8,7 +8,7 @@ from .models import db, User, Role
 migrate = Migrate()
 security = Security()
 user_datastore = SQLAlchemyUserDatastore(db, User, Role)
-babel = Babel(default_locale='ru')
+babel = Babel(default_locale='fr')
 
 
 @babel.localeselector
