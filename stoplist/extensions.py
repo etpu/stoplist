@@ -1,7 +1,7 @@
 from flask import current_app
+from flask_babelex import Babel
 from flask_migrate import Migrate
 from flask_security import Security, SQLAlchemyUserDatastore
-from flask_babelex import Babel
 
 from .models import db, User, Role
 

@@ -2,7 +2,6 @@ import uuid
 
 from flask import abort, redirect, request, url_for
 from flask_admin import Admin, AdminIndexView
-from flask_admin._backwards import ObsoleteAttr
 from flask_admin.contrib import sqla
 from flask_admin.menu import MenuLink
 from flask_security import current_user
@@ -87,20 +86,18 @@ class StoplistView(StaffModelView):
         'reason4': 'Aucun appel',
         'modify': 'Date de la dernière modification',
     }
-    column_display_pk = ObsoleteAttr('column_display_pk',
-                                     'list_display_pk',
-                                     True)
+    column_display_pk = True
 
     def on_model_change(self, form, model, is_created):
-        model.user = current_user.__str__()
+        model.user = current_user.login
         if not model.reason1 and not model.reason2 and not model.reason3 and not model.reason4:
-            raise Exception(ValueError)
+            raise ValueError("")
         return super().on_model_change(form, model, is_created)
 
     def after_model_change(self, form, model, is_created):
         if is_created:
-            send_to_log_and_asterisk(current_user.__str__(), model.id, "CREATE", self._model_data(model))
-            ami_cmd("DBPut", f"family=ART&key={model.number}&val={self._create_playback(model)}")
+            send_to_log_and_asterisk(current_user.login, model.id, "CREATE", self._model_data(model))
+            ami_cmd("DBPut", f"family=STOP&key={model.number}&val={self._create_playback(model)}")
         else:
             if form.reason1:
                 data = f'Audiotel={"On" if model.reason1 else "Off"}'
@@ -116,13 +113,13 @@ class StoplistView(StaffModelView):
                 data = f'Number={model.number}'
             else:
                 data = "None"
-            send_to_log_and_asterisk(current_user.__str__(), model.id, "UPDATE", data)
-            ami_cmd("DBPut", f"family=ART&key={model.number}&val={self._create_playback(model)}")
+            send_to_log_and_asterisk(current_user.login, model.id, "UPDATE", data)
+            ami_cmd("DBPut", f"family=STOP&key={model.number}&val={self._create_playback(model)}")
         return super().after_model_change(form, model, is_created)
 
     def after_model_delete(self, model):
-        send_to_log_and_asterisk(current_user.__str__(), model.id, "DELETE", self._model_data(model))
-        ami_cmd("DBDel", f"family=ART&key={model.number}")
+        send_to_log_and_asterisk(current_user.login, model.id, "DELETE", self._model_data(model))
+        ami_cmd("DBDel", f"family=STOP&key={model.number}")
         return super().after_model_delete(self)
 
     @staticmethod
@@ -159,7 +156,7 @@ class LogView(AdminModelView):
 
 
 admin = Admin(
-    name='stoplist', template_mode='bootstrap4',
+    name='PH Group', template_mode='bootstrap4',
     index_view=SecureIndex(name='Aider')
 )
 admin.add_link(MenuLink(name='Logout', url='/logout'))
