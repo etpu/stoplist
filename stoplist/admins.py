@@ -2,6 +2,7 @@ import uuid
 
 from flask import abort, redirect, request, url_for
 from flask_admin import Admin, AdminIndexView
+from flask_admin.babel import gettext
 from flask_admin.contrib import sqla
 from flask_admin.menu import MenuLink
 from flask_security import current_user
@@ -156,12 +157,12 @@ class LogView(AdminModelView):
 
 
 admin = Admin(
-    name='PH Group', template_mode='bootstrap4',
+    name=gettext('PH Group'), template_mode='bootstrap4',
     index_view=SecureIndex(name='Aider')
 )
-admin.add_link(MenuLink(name='Logout', url='/logout'))
+admin.add_link(MenuLink(name=gettext('Logout'), url='/logout'))
 
-admin.add_view(UserView(User, db.session, name='Users'))
-admin.add_view(RoleView(Role, db.session, name='Rôle'))
-admin.add_view(StoplistView(Stoplist, db.session, name='Stoplist'))
-admin.add_view(LogView(Log, db.session, name='Journal'))
+admin.add_view(UserView(User, db.session, name=gettext('Users')))
+admin.add_view(RoleView(Role, db.session, name=gettext('Roles')))
+admin.add_view(StoplistView(Stoplist, db.session, name=gettext('Stoplist')))
+admin.add_view(LogView(Log, db.session, name=gettext('Log')))

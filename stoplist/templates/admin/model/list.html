@@ -14,15 +14,15 @@
     {% block model_menu_bar %}
     <ul class="nav nav-tabs">
         <li class="nav-item">
-            <a href="javascript:void(0)" class="nav-link active">{{ _gettext('List') }}{% if count %} ({{ count }}){% endif %}</a>
+            <a href="javascript:void(0)" class="nav-link active">{{ gettext('List') }}{% if count %} ({{ count }}){% endif %}</a>
         </li>
 
         {% if admin_view.can_create %}
         <li class="nav-item">
           {%- if admin_view.create_modal -%}
-            {{ lib.add_modal_button(url=get_url('.create_view', url=return_url, modal=True), btn_class='nav-link', title='Ajouter Nouvel Enregistrement', content='Ajouter') }}
+            {{ lib.add_modal_button(url=get_url('.create_view', url=return_url, modal=True), btn_class='nav-link', title=gettext('Create New Record'), content=gettext('Create')) }}
           {% else %}
-            <a href="{{ get_url('.create_view', url=return_url) }}" title="Ajouter Nouvel Enregistrement" class="nav-link">'Ajouter'</a>
+            <a href="{{ get_url('.create_view', url=return_url) }}" title={{ gettext('Create New Record') }} class="nav-link">{{ gettext('Create')}}</a>
           {%- endif -%}
         </li>
         {% endif %}
@@ -73,7 +73,7 @@
                 {% block list_header scoped %}
                     {% if actions %}
                     <th class="list-checkbox-column">
-                        <input type="checkbox" name="rowtoggle" class="action-rowtoggle" title="{{ _gettext('Select all records') }}" />
+                        <input type="checkbox" name="rowtoggle" class="action-rowtoggle" title="{{ gettext('Select all records') }}" />
                     </th>
                     {% endif %}
                     {% block list_row_actions_header %}
@@ -86,7 +86,7 @@
                     <th class="column-header col-{{c}}">
                         {% if admin_view.is_sortable(c) %}
                             {% if sort_column == column %}
-                                <a href="{{ sort_url(column, True) }}" title="{{ _gettext('Sort by %(name)s', name=name) }}">
+                                <a href="{{ sort_url(column, True) }}" title="{{ gettext('Sort by %(name)s', name=name) }}">
                                     {{ name }}
                                     {% if sort_desc %}
                                         <span class="fa fa-chevron-up glyphicon glyphicon-chevron-up"></span>
@@ -95,7 +95,7 @@
                                     {% endif %}
                                 </a>
                             {% else %}
-                                <a href="{{ sort_url(column) }}" title="{{ _gettext('Sort by %(name)s', name=name) }}">{{ name }}</a>
+                                <a href="{{ sort_url(column) }}" title="{{ gettext('Sort by %(name)s', name=name) }}">{{ name }}</a>
                             {% endif %}
                         {% else %}
                             {{ name }}
@@ -116,7 +116,7 @@
             {% block list_row scoped %}
                 {% if actions %}
                 <td>
-                    <input type="checkbox" name="rowid" class="action-checkbox" value="{{ get_pk_value(row) }}" title="{{ _gettext('Select record') }}" />
+                    <input type="checkbox" name="rowid" class="action-checkbox" value="{{ get_pk_value(row) }}" title="{{ gettext('Select record') }}" />
                 </td>
                 {% endif %}
                 {% block list_row_actions_column scoped %}
@@ -190,7 +190,7 @@
     <script src="{{ admin_static.url(filename='admin/js/bs4_filters.js', v='1.0.0') }}"></script>
     {{ lib.form_js() }}
 
-    {{ actionlib.script(_gettext('Please select at least one record.'),
+    {{ actionlib.script(gettext('Please select at least one record.'),
                         actions,
                         actions_confirmation) }}
 {% endblock %}

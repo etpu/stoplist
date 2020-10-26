@@ -1,0 +1,133 @@
+# French translations for PROJECT.
+# Copyright (C) 2020 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2020-10-26 12:26+0800\n"
+"PO-Revision-Date: 2020-10-26 12:33+0800\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: fr\n"
+"Language-Team: fr <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n > 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.8.0\n"
+
+#: stoplist/admins.py:160
+msgid "PH Group"
+msgstr "PH Groupe"
+
+#: stoplist/admins.py:163
+msgid "Logout"
+msgstr "Se déconnecter"
+
+#: stoplist/admins.py:165
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: stoplist/admins.py:166
+msgid "Roles"
+msgstr "Rôles"
+
+#: stoplist/admins.py:167
+msgid "Stoplist"
+msgstr "Liste d'arrêt"
+
+#: stoplist/admins.py:168
+msgid "Log"
+msgstr "Journal"
+
+#: stoplist/templates/admin/lib.html:214 stoplist/templates/admin/lib.html:225
+msgid "Save"
+msgstr "Enregistrer"
+
+#: stoplist/templates/admin/lib.html:219 stoplist/templates/admin/lib.html:230
+msgid "Cancel"
+msgstr "Annuler"
+
+#: stoplist/templates/admin/lib.html:287
+msgid "Save and Add Another"
+msgstr "Enregistrer et en ajouter un autre"
+
+#: stoplist/templates/admin/lib.html:290
+msgid "Save and Continue Editing"
+msgstr "Enregistrer et continuer à éditer"
+
+#: stoplist/templates/admin/model/layout.html:14
+#: stoplist/templates/admin/model/layout.html:19
+#: stoplist/templates/admin/model/layout.html:26
+msgid "Export"
+msgstr "Export"
+
+#: stoplist/templates/admin/model/layout.html:46
+msgid "Apply"
+msgstr "Appliquer"
+
+#: stoplist/templates/admin/model/layout.html:48
+msgid "Reset Filters"
+msgstr "Filtres réinitialisés"
+
+#: stoplist/templates/admin/model/layout.html:74
+#: stoplist/templates/admin/model/layout.html:87
+#, python-format
+msgid "%(placeholder)s"
+msgstr ""
+
+#: stoplist/templates/admin/model/layout.html:82
+#: stoplist/templates/admin/model/layout.html:88
+msgid "Search"
+msgstr "Chercher"
+
+#: stoplist/templates/admin/model/layout.html:96
+#: stoplist/templates/admin/model/layout.html:99
+#: stoplist/templates/admin/model/layout.html:100
+#: stoplist/templates/admin/model/layout.html:101
+msgid "items"
+msgstr ""
+
+#: stoplist/templates/admin/model/list.html:17
+msgid "List"
+msgstr "Liste"
+
+#: stoplist/templates/admin/model/list.html:23
+#: stoplist/templates/admin/model/list.html:25
+#: stoplist/templates/admin/model/modals/create.html:10
+msgid "Create New Record"
+msgstr "Ajouter Nouvel Enregistrement"
+
+#: stoplist/templates/admin/model/list.html:23
+#: stoplist/templates/admin/model/list.html:25
+msgid "Create"
+msgstr "Ajouter"
+
+#: stoplist/templates/admin/model/list.html:76
+msgid "Select all records"
+msgstr "Sélectionner tous les enregistrements"
+
+#: stoplist/templates/admin/model/list.html:89
+#: stoplist/templates/admin/model/list.html:98
+#, python-format
+msgid "Sort by %(name)s"
+msgstr "Trier par %(name)s"
+
+#: stoplist/templates/admin/model/list.html:119
+msgid "Select record"
+msgstr "Sélectionner l'enregistrement"
+
+#: stoplist/templates/admin/model/list.html:193
+msgid "Please select at least one record."
+msgstr "Veuillez choisir au moins un modèle."
+
+#: stoplist/templates/security/login_user.html:24
+msgid "Username"
+msgstr ""
+
+#: stoplist/templates/security/login_user.html:25
+msgid "Password"
+msgstr "Mot de passe"
+

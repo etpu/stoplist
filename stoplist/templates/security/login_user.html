@@ -21,8 +21,8 @@ h1.h3.mb-3.font-weight-normal.center {
     {{ login_user_form.hidden_tag() }}
       <h1 class="h3 mb-3 font-weight-normal center">Stop List</h1>
       {% include "security/_messages.html" %}
-      {{ render_field(login_user_form.email, id='inputEmail', class='form-control', placeholder='Username', required=True, style='margin-bottom: -1px; border-bottom-right-radius: 0; border-bottom-left-radius: 0;') }}
-      {{ render_field(login_user_form.password, id='inputPassword', class='form-control', placeholder='Password', required=True) }}
+      {{ render_field(login_user_form.email, id='inputEmail', class='form-control', placeholder=gettext('Username'), required=True, style='margin-bottom: -1px; border-bottom-right-radius: 0; border-bottom-left-radius: 0;') }}
+      {{ render_field(login_user_form.password, id='inputPassword', class='form-control', placeholder=gettext('Password'), required=True) }}
       {{ render_field_errors(login_user_form.csrf_token) }}
       {{ render_field_errors(login_user_form.email) }}
       {{ render_field_errors(login_user_form.password) }}
